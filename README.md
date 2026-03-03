@@ -90,3 +90,7 @@ with StreamFuturePool(workers=9, host="localhost", db=3) as pool:
 
 Each `submit` for `StreamFuturePool` will create its own `<operation identifier>` and `<task ID>` that are identical and each `map` will create its own 
 `<operation identifier>` for all tasks under the `map` with each function call underneath with its own `<task ID>`.
+
+## Why not a job scheduler?
+
+Job schedulers like [rq](https://github.com/rq/rq) are excellant at issuing truly asynchronous work, but that's not the purpose of a pool like this - `StreamFutures` is for fire-and-wait, not necessarily fire-and-forget.
